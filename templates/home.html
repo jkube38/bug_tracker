@@ -1,0 +1,273 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+
+    #ticketHolderNew {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 0 25px;
+    }
+
+    #ticketHolderInProgress {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 0 25px;
+    }
+
+    #ticketHolderDone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 0 25px;
+    }
+
+    #newHeader {
+        background-color: #f796058f;
+        font-family: 'Oxygen', sans-serif;
+        font-size: 36px;
+        color: #f79605;
+        width: 100%;
+        text-align: center;
+    }
+
+    #progressHeader {
+        background-color: #f796058f;
+        font-family: 'Oxygen', sans-serif;
+        font-size: 36px;
+        color: #f79605;
+        width: 100%;
+        text-align: center;
+    }
+
+    #completedHeader {
+        background-color: #f796058f;
+        font-family: 'Oxygen', sans-serif;
+        font-size: 36px;
+        color: #f79605;
+        width: 100%;
+        text-align: center;
+    }
+
+    .singleTicket {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 25px 0;
+        width: 90%;
+        font-family: 'Oxygen', sans-serif;
+        border-radius: 10px;
+        -webkit-box-shadow: -5px 5px 10px 1px rgba(0,0,0,0.64); 
+        box-shadow: -5px 5px 10px 1px rgba(0,0,0,0.64);
+    }
+
+    a {
+        text-decoration: none;
+        color: #f8dbb0;
+    }
+
+    #titleID {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: #f79605;
+        border-radius: 10px 10px 0 0;
+    }
+
+    #delegation {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-color: #f796058f;
+        width: 25%;
+    }
+    #details {
+        display: flex;
+    }
+
+    #created {
+        display: flex;
+        justify-content: space-between;
+        background-color: #f79605;
+        border-radius: 0 0 10px 10px;
+    }
+
+    #desc {
+        background-color: #f7960548;
+        width: 75%;
+    }
+
+    #title {
+        margin: 0 0 0 15px;
+    }
+
+    #id {
+        margin: 0 15px 0 0;
+    }
+
+    #status {
+        margin: 0 0 0 15px;
+    }
+
+    #assignedTo {
+        margin: 0 0 0 15px;
+
+    }
+
+    #completedBy {
+        margin: 0 0 0 15px;
+
+    }
+
+    #description {
+        margin: 15px 15px 15px 15px
+    }
+
+    #createdAt {
+        margin: 15px 0 15px 15px;
+    }
+
+    #user {
+        margin: 15px 15px 15px 0;
+
+    }
+
+    #invalidHeader {
+        background-color: #f796058f;
+        font-family: 'Oxygen', sans-serif;
+        font-size: 36px;
+        color: #f79605;
+        width: 100%;
+        text-align: center;
+    }
+
+    #ticketHolderInvalid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 0 25px;
+    }
+</style>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div id='ticketHolderNew'>
+    <h2 id='newHeader'>New Tickets</h2>
+{% for ticket in all_tickets %}
+
+    {% if ticket.status == 'New' %}
+    <div class='singleTicket'>
+        <div id="titleID">
+            <h2 id='title'>Title: <a href="/ticket/{{ticket.title}}/">{{ticket.title}}</a></h2>
+            <h2 id='id'>Id: {{ticket.id}}</h2>
+        </div>
+        <div id='details'>
+            <div id='delegation'>
+                <h2 id='status'>Status: {{ticket.status}}</h2>
+                <h2 id='assignedTo'>Assinged to: {{ticket.assigned_to}}</h2>
+                <h2 id='completedBy'>Completed by: {{ticket.completed_by}}</h2>
+            </div>
+            <div id='desc'>
+                <h2 id='description'><u>Description:</u><br><br> {{ticket.description}}</h2>
+            </div>
+        </div>
+        <div id='created'>
+            <h2 id='createdAt'>Created on: {{ticket.submit_time}}</h2>
+            <h2 id='user'>Filed by: <a href="/user/{{ticket.filed_by}}/">{{ticket.filed_by}}</a></h2>
+        </div>
+    </div>
+    {% endif %}
+{% endfor%}
+</div>
+<div id='ticketHolderInProgress'>
+    <h2 id='progressHeader'>Tickets In Progress</h2>
+
+    {% for ticket in all_tickets %}
+    
+        {% if ticket.status == 'In Progress' %}
+        <div class='singleTicket'>
+            <div id="titleID">
+                <h2 id='title'>Title: <a href="/ticket/{{ticket.title}}/">{{ticket.title}}</a></h2>
+                <h2 id='id'>Id: {{ticket.id}}</h2>
+            </div>
+            <div id='details'>
+                <div id='delegation'>
+                    <h2 id='status'>Status: {{ticket.status}}</h2>
+                    <h2 id='assignedTo'>Assinged to: {{ticket.assigned_to}}</h2>
+                    <h2 id='completedBy'>Completed by: {{ticket.completed_by}}</h2>
+                </div>
+                <div id='desc'>
+                    <h2 id='description'><u>Description:</u><br><br> {{ticket.description}}</h2>
+                </div>
+            </div>
+            <div id='created'>
+                <h2 id='createdAt'>Created on: {{ticket.submit_time}}</h2>
+                <h2 id='user'>Filed by: <a href="/user/{{ticket.filed_by}}/">{{ticket.filed_by}}</a></h2>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor%}
+    </div>
+    <div id='ticketHolderDone'>
+    <h2 id='completedHeader'>Completed Tickets</h2>
+
+        {% for ticket in all_tickets %}
+        
+            {% if ticket.status == 'Done' %}
+            <div class='singleTicket'>
+                <div id="titleID">
+                    <h2 id='title'>Title: <a href="/ticket/{{ticket.title}}/">{{ticket.title}}</a></h2>
+                    <h2 id='id'>Id: {{ticket.id}}</h2>
+                </div>
+                <div id='details'>
+                    <div id='delegation'>
+                        <h2 id='status'>Status: {{ticket.status}}</h2>
+                        <h2 id='assignedTo'>Assinged to: {{ticket.assigned_to}}</h2>
+                        <h2 id='completedBy'>Completed by: {{ticket.completed_by}}</h2>
+                    </div>
+                    <div id='desc'>
+                        <h2 id='description'><u>Description:</u><br><br> {{ticket.description}}</h2>
+                    </div>
+                </div>
+                <div id='created'>
+                    <h2 id='createdAt'>Created on: {{ticket.submit_time}}</h2>
+                    <h2 id='user'>Filed by: <a href="/user/{{ticket.filed_by}}/">{{ticket.filed_by}}</a></h2>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor%}
+        </div>
+        <div id='ticketHolderInvalid'>
+        <h2 id='invalidHeader'>Invalid Tickets</h2>
+
+        {% for ticket in all_tickets %}
+        
+            {% if ticket.status == 'Invalid' %}
+            <div class='singleTicket'>
+                <div id="titleID">
+                    <h2 id='title'>Title: <a href="/ticket/{{ticket.title}}/">{{ticket.title}}</a></h2>
+                    <h2 id='id'>Id: {{ticket.id}}</h2>
+                </div>
+                <div id='details'>
+                    <div id='delegation'>
+                        <h2 id='status'>Status: {{ticket.status}}</h2>
+                        <h2 id='assignedTo'>Assinged to: {{ticket.assigned_to}}</h2>
+                        <h2 id='completedBy'>Completed by: {{ticket.completed_by}}</h2>
+                    </div>
+                    <div id='desc'>
+                        <h2 id='description'><u>Description:</u><br><br> {{ticket.description}}</h2>
+                    </div>
+                </div>
+                <div id='created'>
+                    <h2 id='createdAt'>Created on: {{ticket.submit_time}}</h2>
+                    <h2 id='user'>Filed by: <a href="/user/{{ticket.filed_by}}/">{{ticket.filed_by}}</a></h2>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor%}
+        </div>
+{% endblock %}

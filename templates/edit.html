@@ -1,0 +1,24 @@
+<style>
+    #formHolder3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #form3{
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+{% extends 'base.html' %}
+{% block content %}
+<div id='formHolder3'>
+    <form  action='' method="post" id='form3'>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

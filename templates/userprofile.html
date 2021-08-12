@@ -1,0 +1,104 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+
+    #userContent {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #identity {
+        display: flex;
+        justify-content: space-evenly;
+        font-family: 'Oxygen', sans-serif;
+        background-color: #f79605;
+
+    }
+
+    #currentTickets{
+        text-align: center;
+        font-family: 'Oxygen', sans-serif;
+        background-color: #f79605;
+    }
+
+    #currentTicks {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #ticketHolder1 {
+        display: flex;
+        align-items: center;
+        font-family: 'Oxygen', sans-serif;
+        justify-content: space-around;
+        margin: 0 0 15px 0;
+        background-color: #f8dbb0;
+        width: 80%;
+        border-radius: 10px;
+        -webkit-box-shadow: -5px 5px 10px 1px rgba(0,0,0,0.64); 
+        box-shadow: -5px 5px 10px 1px rgba(0,0,0,0.64);
+    }
+
+    #ticketLink {
+        color: #f79605;
+        
+    }
+
+    #ticketTitle {
+        width: 30%;
+        text-align: left;
+    }
+
+    #ticketId {
+        width: 30%;
+        text-align: right;
+    }
+
+    #date {
+        width: 30%;
+        text-align: center;
+    }
+</style>
+
+{% extends 'base.html' %}
+{% block content %}
+<div id='userContent'>
+    <div id='identity'>
+        <h2 id='name'>Username: {{username.username}}</h2>
+        <h2 id='id'>Id: {{username.id}}</h2>
+        <h2 id='role'>Role: {{username.role}}</h2>
+        <h2 id='email'>Email: {{username.email}}</h2>
+    </div>
+    <h2 id='currentTickets'>{{username.username}}'s current tickets</h2>
+    <div id='currentTicks'>
+        {% for ticket in user_progress %}
+            <div id='ticketHolder1'>
+                <h2 id='ticketTitle'>Title: <a href="/ticket/{{ticket.title}}/" id='ticketLink'>{{ticket.title}}</a></h2>
+                <hd id='date'>Created on: {{ticket.submit_time}}</hd>
+                <h2 id='ticketId'>Id: {{ticket.id}}</h2>
+            </div>
+        {% endfor %}
+    </div>
+    <h2 id='currentTickets'>tickets {{username.username}} has filed</h2>
+    <div id='currentTicks'>
+        {% for ticket in user_filed %}
+            <div id='ticketHolder1'>
+                <h2 id='ticketTitle'>Title: <a href="/ticket/{{ticket.title}}/" id='ticketLink'>{{ticket.title}}</a></h2>
+                <hd id='date'>Created on: {{ticket.submit_time}}</hd>
+                <h2 id='ticketId'>Id: {{ticket.id}}</h2>
+            </div>
+        {% endfor %}
+    </div>
+    <h2 id='currentTickets'>tickets {{username.username}} has completed</h2>
+    <div id='currentTicks'>
+        {% for ticket in user_completed %}
+            <div id='ticketHolder1'>
+                <h2 id='ticketTitle'>Title: <a href="/ticket/{{ticket.title}}/" id='ticketLink'>{{ticket.title}}</a></h2>
+                <hd id='date'>Created on: {{ticket.submit_time}}</hd>
+                <h2 id='ticketId'>Id: {{ticket.id}}</h2>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

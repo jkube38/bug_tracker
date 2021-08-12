@@ -1,0 +1,36 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+
+    #header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #f79605;
+        margin-bottom: 25px;
+        font-family: 'Oxygen', sans-serif;
+        font-size: 20px;
+
+    }
+
+    a {
+        text-decoration: none;
+        color: #f8dbb0;
+    }
+
+    #title {
+        color: #f8dbb0
+    }
+</style>
+<div id='header'>
+    {% if request.user.is_authenticated%}
+        <a href='/getthembugs/'><h2 id='title'>Bug Tracker</h2></a>
+    {%  else %}
+        <h2 id='title'>Bug Tracker</h2>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+        <a href='/createticket/'><h2 id='createTicket'>Create Ticket</h2></a>
+        <a href='/logout/'><h2 id='logout'>Logout</h2></a>
+    {% endif %}
+</div>
+{% block content %}
+{% endblock%}

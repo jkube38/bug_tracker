@@ -1,0 +1,25 @@
+<style>
+    #formHolder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #form{
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+{% extends 'base.html' %}
+{% block content %}
+<div id='formHolder'>
+    <h1 id='loginForm'>Login</h1>
+    <form  action='' method="post" id='form'>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

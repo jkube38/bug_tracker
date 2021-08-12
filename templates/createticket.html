@@ -1,0 +1,36 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+
+    #formHolder2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #form2{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #submitTicketForm {
+        background-color: #f79605;
+        width: 100%;
+        font-family: 'Oxygen', sans-serif;
+        text-align: center;
+        color: #f8dbb0;
+    }
+</style>
+
+
+{% extends 'base.html' %}
+{% block content %}
+<div id='formHolder2'>
+    <h1 id='submitTicketForm'>Create your ticket</h1>
+    <form  action='' method="post" id='form2'>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit Ticket">
+    </form>
+</div>
+{% endblock %}
